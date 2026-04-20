@@ -1,0 +1,14 @@
+{
+  "name": "nakshatra",
+  "private": true,
+  "workspaces": ["frontend", "backend"],
+  "scripts": {
+    "dev": "concurrently \"npm run dev -w nakshatra-frontend\" \"npm run dev -w nakshatra-backend\"",
+    "build": "npm run build -w nakshatra-frontend",
+    "start:frontend": "npm run start -w nakshatra-frontend",
+    "start:backend": "npm run start -w nakshatra-backend"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

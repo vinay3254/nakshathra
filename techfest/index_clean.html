@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Techfest | IIT Bombay — Asia's Largest Tech Festival</title>
+  <link rel="icon" href="TFlogo.cb1159ca71db5e1069fc.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #030008;
+      --surface:   #0d0118;
+      --card:      rgba(20, 4, 38, 0.7);
+      --primary:   #c026d3;
+      --primary-l: #e040fb;
+      --secondary: #00d4ff;
+      --accent:    #ff2d78;
+      --gold:      #ffd700;
+      --text:      #f0e6ff;
+      --muted:     #8b7aa8;
+      --border:    rgba(192, 38, 211, 0.3);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Rajdhani', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ─── SCROLLBAR ─────────────────────────────────────── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 3px; }
+
+    /* ─── NOISE OVERLAY ─────────────────────────────────── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.4;
+    }
+
+    /* ─── NAV ────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 4rem;
+      height: 72px;
+      background: rgba(3, 0, 8, 0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo img {
+      height: 40px;
+      filter: drop-shadow(0 0 12px rgba(192, 38, 211, 0.7));
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      transition: color 0.2s, text-shadow 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--secondary);
+      text-shadow: 0 0 20px rgba(0, 212, 255, 0.6);
+    }
+
+    .nav-cta {
+      background: transparent;
+      border: 1px solid var(--primary);
+      color: var(--primary-l);
+      padding: 0.5rem 1.4rem;
+      font-family: 'Orbitron', monospace;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+      transition: all 0.25s;
+    }
+
+    .nav-cta:hover {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 0 24px rgba(192, 38, 211, 0.5);
+    }
+
+    /* ─── HERO ───────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding-top: 72px;
+    }
+
+    /* Stars layer */
+    .hero-stars {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(1px 1px at 10% 15%, rgba(255,255,255,0.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 25% 8%, rgba(255,255,255,0.4) 0%, transparent 100%),
+        radial-gradient(2px 2px at 40% 22%, rgba(255,255,255,0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 55% 5%, rgba(255,255,255,0.7) 0%, transparent 100%),
+        radial-gradient(1px 1px at 70% 18%, rgba(255,255,255,0.4) 0%, transparent 100%),
+        radial-gradient(2px 2px at 85% 10%, rgba(255,255,255,0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 15% 35%, rgba(255,255,255,0.3) 0%, transparent 100%),
+        radial-gradient(1px 1px at 35% 42%, rgba(255,255,255,0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 60% 30%, rgba(255,255,255,0.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 78% 38%, rgba(255,255,255,0.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 92% 25%, rgba(255,255,255,0.3) 0%, transparent 100%),
+        radial-gradient(1px 1px at 5% 55%, rgba(255,255,255,0.5) 0%, transparent 100%),
+        radial-gradient(2px 2px at 48% 60%, rgba(255,255,255,0.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 82% 52%, rgba(255,255,255,0.6) 0%, transparent 100%);
+      animation: twinkle 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes twinkle {
+      0%  { opacity: 0.5; }
+      100%{ opacity: 1;   }
+    }
+
+    /* Background city */
+    .hero-bg-city {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 70%;
+      background: url('backgroundBack.0509c3206348a69ec1cb.png') center bottom / cover no-repeat;
+      opacity: 0.9;
+    }
+
+    /* Gradient over city bottom */
+    .hero-bg-fade {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 35%;
+      background: linear-gradient(to bottom, transparent, var(--bg));
+    }
+
+    /* Foreground building silhouette */
+    .hero-buildings {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 180px;
+      background: url('buildingFront.00ea1c1d3dc2f2bf1c5f.png') center bottom / auto 100% repeat-x;
+      z-index: 3;
+      filter: drop-shadow(0 -8px 30px rgba(192, 38, 211, 0.3));
+    }
+
+    /* Top gradient */
+    .hero-top-fade {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 200px;
+      background: linear-gradient(to bottom, var(--bg), transparent);
+      z-index: 2;
+    }
+
+    /* Ambient glow orbs */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+    }
+    .orb-1 { width: 400px; height: 400px; background: rgba(192,38,211,0.18); top: 10%; left: 20%; }
+    .orb-2 { width: 300px; height: 300px; background: rgba(0,212,255,0.12); top: 20%; right: 15%; }
+    .orb-3 { width: 250px; height: 250px; background: rgba(255,45,120,0.1);  bottom: 25%; left: 45%; }
+
+    .hero-content {
+      position: relative;
+      z-index: 5;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.2rem;
+      padding: 2rem;
+      animation: heroIn 1s ease-out both;
+    }
+
+    @keyframes heroIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0);    }
+    }
+
+    .hero-eyebrow {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.4em;
+      color: var(--secondary);
+      text-transform: uppercase;
+      animation: heroIn 1s 0.1s ease-out both;
+    }
+
+    .hero-logo-img {
+      width: min(480px, 90vw);
+      filter:
+        drop-shadow(0 0 24px rgba(192, 38, 211, 0.9))
+        drop-shadow(0 0 60px rgba(192, 38, 211, 0.4));
+      animation: logoPulse 3s ease-in-out infinite, heroIn 1s 0.2s ease-out both;
+    }
+
+    @keyframes logoPulse {
+      0%, 100% { filter: drop-shadow(0 0 24px rgba(192,38,211,0.9)) drop-shadow(0 0 60px rgba(192,38,211,0.4)); }
+      50%       { filter: drop-shadow(0 0 36px rgba(192,38,211,1.0)) drop-shadow(0 0 90px rgba(192,38,211,0.6)); }
+    }
+
+    .hero-tagline {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(0.9rem, 2vw, 1.15rem);
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      text-transform: uppercase;
+      animation: heroIn 1s 0.3s ease-out both;
+    }
+
+    .hero-tagline span {
+      color: var(--text);
+    }
+
+    .hero-date-badge {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      animation: heroIn 1s 0.4s ease-out both;
+    }
+
+    .hero-date-badge::before,
+    .hero-date-badge::after {
+      content: '';
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--primary));
+    }
+    .hero-date-badge::after {
+      background: linear-gradient(to left, transparent, var(--primary));
+    }
+
+    .hero-date {
+      font-family: 'Orbitron', monospace;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      color: var(--primary-l);
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      margin-top: 0.5rem;
+      animation: heroIn 1s 0.5s ease-out both;
+    }
+
+    .btn-primary {
+      position: relative;
+      padding: 0.85rem 2.2rem;
+      background: var(--primary);
+      color: #fff;
+      font-family: 'Orbitron', monospace;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
+      transition: all 0.25s;
+      text-decoration: none;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-l);
+      box-shadow: 0 0 32px rgba(192, 38, 211, 0.7), 0 0 60px rgba(192, 38, 211, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      padding: 0.85rem 2.2rem;
+      background: transparent;
+      color: var(--secondary);
+      font-family: 'Orbitron', monospace;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      border: 1px solid var(--secondary);
+      cursor: pointer;
+      clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
+      transition: all 0.25s;
+      text-decoration: none;
+    }
+
+    .btn-outline:hover {
+      background: rgba(0, 212, 255, 0.1);
+      box-shadow: 0 0 24px rgba(0, 212, 255, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .hero-scroll-hint {
+      position: absolute;
+      bottom: 200px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      animation: heroIn 1s 0.8s ease-out both;
+    }
+
+    .scroll-text {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--primary), transparent);
+      animation: scrollPulse 1.5s ease-in-out infinite;
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { transform: scaleY(1); opacity: 1;   }
+      50%       { transform: scaleY(0.6); opacity: 0.4; }
+    }
+
+    /* ─── STATS ──────────────────────────────────────────── */
+    .stats {
+      position: relative;
+      z-index: 10;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .stat-item {
+      background: var(--surface);
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      transition: background 0.3s;
+    }
+
+    .stat-item:hover {
+      background: rgba(20, 4, 38, 0.95);
+    }
+
+    .stat-num {
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--primary-l), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+    }
+
+    .stat-suffix {
+      font-family: 'Orbitron', monospace;
+      font-size: 1.2rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--primary-l), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .stat-label {
+      margin-top: 0.5rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    /* ─── SECTIONS ───────────────────────────────────────── */
+    section {
+      padding: 7rem 8vw;
+    }
+
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.35em;
+      color: var(--secondary);
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
+
+    .section-tag::before {
+      content: '';
+      width: 24px;
+      height: 1px;
+      background: var(--secondary);
+    }
+
+    .section-title {
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      color: var(--text);
+    }
+
+    .section-title .glow {
+      background: linear-gradient(90deg, var(--primary-l), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ─── ABOUT ──────────────────────────────────────────── */
+    .about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .about-visual {
+      position: relative;
+    }
+
+    .about-img-wrap {
+      position: relative;
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+      background: var(--card);
+      backdrop-filter: blur(10px);
+    }
+
+    .about-img-wrap::before {
+      content: '';
+      position: absolute;
+      top: -1px; left: -1px; right: -1px; bottom: -1px;
+      background: linear-gradient(135deg, var(--primary), transparent 40%, var(--secondary));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      padding: 1px;
+      border-radius: 2px;
+      pointer-events: none;
+    }
+
+    .about-img-wrap img {
+      width: 100%;
+      filter: drop-shadow(0 0 30px rgba(192,38,211,0.4));
+    }
+
+    .about-corner {
+      position: absolute;
+      width: 20px; height: 20px;
+      border-color: var(--secondary);
+      border-style: solid;
+    }
+
+    .about-corner.tl { top: -8px; left: -8px; border-width: 2px 0 0 2px; }
+    .about-corner.tr { top: -8px; right: -8px; border-width: 2px 2px 0 0; }
+    .about-corner.bl { bottom: -8px; left: -8px; border-width: 0 0 2px 2px; }
+    .about-corner.br { bottom: -8px; right: -8px; border-width: 0 2px 2px 0; }
+
+    .about-text p {
+      font-size: 1.05rem;
+      font-weight: 400;
+      line-height: 1.75;
+      color: var(--muted);
+      margin-top: 1.5rem;
+    }
+
+    .about-text p + p { margin-top: 1rem; }
+
+    .about-text strong { color: var(--text); font-weight: 600; }
+
+    .about-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 2rem;
+    }
+
+    .pill {
+      padding: 0.4rem 1rem;
+      border: 1px solid var(--border);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      color: var(--primary-l);
+      text-transform: uppercase;
+      clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+      background: rgba(192, 38, 211, 0.08);
+    }
+
+    /* ─── EVENTS ─────────────────────────────────────────── */
+    .events-section {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .events-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 3.5rem;
+    }
+
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .event-card {
+      position: relative;
+      background: var(--card);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border);
+      padding: 2rem;
+      cursor: pointer;
+      transition: transform 0.3s, border-color 0.3s;
+      overflow: hidden;
+    }
+
+    .event-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(192,38,211,0.06), transparent 60%);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .event-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--primary);
+    }
+
+    .event-card:hover::after { opacity: 1; }
+
+    .event-card-glow {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--primary), transparent);
+      transform: scaleX(0);
+      transition: transform 0.4s;
+    }
+
+    .event-card:hover .event-card-glow { transform: scaleX(1); }
+
+    .event-number {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      color: var(--primary);
+      margin-bottom: 0.8rem;
+    }
+
+    .event-name {
+      font-family: 'Orbitron', monospace;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.8rem;
+      letter-spacing: 0.02em;
+    }
+
+    .event-desc {
+      font-size: 0.88rem;
+      font-weight: 400;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+
+    .event-meta {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .event-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      color: var(--secondary);
+      text-transform: uppercase;
+      padding: 0.25rem 0.6rem;
+      border: 1px solid rgba(0, 212, 255, 0.25);
+    }
+
+    .event-arrow {
+      margin-left: auto;
+      font-size: 1.1rem;
+      color: var(--muted);
+      transition: color 0.2s, transform 0.2s;
+    }
+
+    .event-card:hover .event-arrow {
+      color: var(--primary-l);
+      transform: translateX(4px);
+    }
+
+    /* ─── HIGHLIGHTS ─────────────────────────────────────── */
+    .highlights-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 1.5rem;
+      margin-top: 3.5rem;
+    }
+
+    .highlight-main {
+      position: relative;
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 3rem;
+      overflow: hidden;
+    }
+
+    .highlight-main::before {
+      content: '';
+      position: absolute;
+      bottom: -40px; right: -40px;
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, rgba(192,38,211,0.2), transparent 70%);
+      pointer-events: none;
+    }
+
+    .highlight-main-num {
+      font-family: 'Orbitron', monospace;
+      font-size: 5rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      opacity: 0.15;
+      position: absolute;
+      top: 1.5rem; right: 2rem;
+    }
+
+    .highlight-side {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .highlight-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 1.8rem;
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s;
+    }
+
+    .highlight-card:hover { border-color: rgba(0,212,255,0.4); }
+
+    .highlight-icon {
+      font-size: 1.5rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .highlight-card-title {
+      font-family: 'Orbitron', monospace;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: 0.05em;
+    }
+
+    .highlight-card-text {
+      margin-top: 0.5rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* ─── SPONSORS ───────────────────────────────────────── */
+    .sponsors-section { text-align: center; }
+
+    .sponsors-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin-top: 3.5rem;
+    }
+
+    .sponsor-item {
+      background: var(--surface);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2.5rem 2rem;
+      transition: background 0.25s;
+    }
+
+    .sponsor-item:hover { background: rgba(192,38,211,0.08); }
+
+    .sponsor-name {
+      font-family: 'Orbitron', monospace;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+      text-transform: uppercase;
+      text-align: center;
+      transition: color 0.25s;
+    }
+
+    .sponsor-item:hover .sponsor-name { color: var(--text); }
+
+    .sponsor-tier {
+      font-size: 0.55rem;
+      letter-spacing: 0.15em;
+      color: var(--primary);
+      margin-top: 0.3rem;
+      font-family: 'Space Mono', monospace;
+      text-transform: uppercase;
+    }
+
+    /* ─── FOOTER ─────────────────────────────────────────── */
+    footer {
+      position: relative;
+      overflow: hidden;
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 0;
+    }
+
+    .footer-city {
+      width: 100%;
+      height: 120px;
+      background: url('buildingFront.00ea1c1d3dc2f2bf1c5f.png') center top / auto 100% repeat-x;
+      opacity: 0.5;
+      filter: drop-shadow(0 8px 30px rgba(192,38,211,0.3));
+    }
+
+    .footer-content {
+      padding: 3rem 8vw;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-brand img {
+      height: 36px;
+      margin-bottom: 1rem;
+      filter: drop-shadow(0 0 10px rgba(192,38,211,0.6));
+    }
+
+    .footer-brand p {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.6;
+      max-width: 260px;
+    }
+
+    .footer-col-title {
+      font-family: 'Orbitron', monospace;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      color: var(--text);
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+
+    .footer-links a {
+      font-size: 0.82rem;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--secondary); }
+
+    .footer-bottom {
+      padding: 1.2rem 8vw;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-copy {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+    }
+
+    .footer-copy span { color: var(--primary); }
+
+    /* ─── SCANLINE FLASH on Hero ─────────────────────────── */
+    .hero-scanline {
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0,0,0,0.03) 2px,
+        rgba(0,0,0,0.03) 4px
+      );
+      pointer-events: none;
+      z-index: 4;
+    }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────── */
+    @media (max-width: 900px) {
+      nav { padding: 0 2rem; }
+      .nav-links { display: none; }
+      section { padding: 4rem 5vw; }
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .about { grid-template-columns: 1fr; gap: 2.5rem; }
+      .events-grid { grid-template-columns: 1fr; }
+      .events-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+      .highlights-grid { grid-template-columns: 1fr; }
+      .sponsors-grid { grid-template-columns: repeat(3, 1fr); }
+      .footer-content { grid-template-columns: 1fr 1fr; gap: 2rem; }
+      .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── NAVIGATION ──────────────────────────────────── -->
+  <nav>
+    <div class="nav-logo">
+      <img src="TFlogo.cb1159ca71db5e1069fc.png" alt="Techfest IIT Bombay" />
+    </div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#events">Events</a></li>
+      <li><a href="#highlights">Highlights</a></li>
+      <li><a href="#sponsors">Sponsors</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="nav-cta">Register Now</button>
+  </nav>
+
+  <!-- ─── HERO ────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="hero-stars"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="hero-bg-city"></div>
+    <div class="hero-bg-fade"></div>
+    <div class="hero-top-fade"></div>
+    <div class="hero-scanline"></div>
+
+    <div class="hero-content">
+      <p class="hero-eyebrow">IIT Bombay Presents</p>
+      <img
+        src="TFlogo.cb1159ca71db5e1069fc.png"
+        alt="Techfest"
+        class="hero-logo-img"
+      />
+      <p class="hero-tagline">
+        <span>Asia's Largest</span> Science &amp; Technology Festival
+      </p>
+      <div class="hero-date-badge">
+        <span class="hero-date">22 — 24 December</span>
+      </div>
+      <div class="hero-buttons">
+        <a href="#events" class="btn-primary">Explore Events</a>
+        <a href="#about" class="btn-outline">Learn More</a>
+      </div>
+    </div>
+
+    <div class="hero-scroll-hint">
+      <span class="scroll-text">Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+
+    <div class="hero-buildings"></div>
+  </section>
+
+  <!-- ─── STATS ───────────────────────────────────────── -->
+  <div class="stats">
+    <div class="stat-item">
+      <div class="stat-num">190<span class="stat-suffix">+</span></div>
+      <div class="stat-label">Countries</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">175<span class="stat-suffix">K+</span></div>
+      <div class="stat-label">Participants</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">100<span class="stat-suffix">+</span></div>
+      <div class="stat-label">Events</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">28<span class="stat-suffix">th</span></div>
+      <div class="stat-label">Edition</div>
+    </div>
+  </div>
+
+  <!-- ─── ABOUT ───────────────────────────────────────── -->
+  <section id="about">
+    <div class="about">
+      <div class="about-visual">
+        <div class="about-corner tl"></div>
+        <div class="about-corner tr"></div>
+        <div class="about-corner bl"></div>
+        <div class="about-corner br"></div>
+        <div class="about-img-wrap">
+          <img src="backgroundBack.0509c3206348a69ec1cb.png" alt="Techfest City" />
+        </div>
+      </div>
+      <div class="about-text">
+        <span class="section-tag">About Techfest</span>
+        <h2 class="section-title">
+          Where Innovation<br />
+          <span class="glow">Meets Ambition</span>
+        </h2>
+        <p>
+          <strong>Techfest IIT Bombay</strong> is Asia's largest science and technology festival, drawing participants from over 190 countries every year to the iconic campus of the Indian Institute of Technology, Bombay.
+        </p>
+        <p>
+          Since 1998, Techfest has been the premier platform for students, researchers, and industry leaders to collaborate, compete, and showcase cutting-edge innovation across robotics, AI, space technology, and beyond.
+        </p>
+        <div class="about-pills">
+          <span class="pill">Robotics</span>
+          <span class="pill">AI &amp; ML</span>
+          <span class="pill">Space Tech</span>
+          <span class="pill">Biotech</span>
+          <span class="pill">Sustainability</span>
+          <span class="pill">Competitions</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── EVENTS ──────────────────────────────────────── -->
+  <section id="events" class="events-section">
+    <div class="events-header">
+      <div>
+        <span class="section-tag">Featured Events</span>
+        <h2 class="section-title">Compete. <span class="glow">Innovate.</span> Win.</h2>
+      </div>
+      <a href="#" class="btn-outline">View All Events</a>
+    </div>
+    <div class="events-grid">
+
+      <div class="event-card">
+        <div class="event-card-glow"></div>
+        <div class="event-number">01 // ROBOTICS</div>
+        <div class="event-name">ABU Robocon</div>
+        <p class="event-desc">Asia-Pacific's premier robot design contest. Build autonomous machines that solve complex engineering challenges under time pressure.</p>
+        <div class="event-meta">
+          <span class="event-tag">Hardware</span>
+          <span class="event-tag">Team</span>
+          <span class="event-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="event-card">
+        <div class="event-card-glow"></div>
+        <div class="event-number">02 // AI &amp; TECH</div>
+        <div class="event-name">Algorithm Arena</div>
+        <p class="event-desc">Solve real-world data science and machine learning problems in a competitive, time-boxed coding environment.</p>
+        <div class="event-meta">
+          <span class="event-tag">Software</span>
+          <span class="event-tag">Solo/Team</span>
+          <span class="event-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="event-card">
+        <div class="event-card-glow"></div>
+        <div class="event-number">03 // SPACE</div>
+        <div class="event-name">CanSat Challenge</div>
+        <p class="event-desc">Design, build, and launch a functional satellite packed into a standard soda can. Real space engineering constraints.</p>
+        <div class="event-meta">
+          <span class="event-tag">Aerospace</span>
+          <span class="event-tag">Team</span>
+          <span class="event-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="event-card">
+        <div class="event-card-glow"></div>
+        <div class="event-number">04 // ENERGY</div>
+        <div class="event-name">Solar Decathlon</div>
+        <p class="event-desc">Design solar-powered structures that maximize efficiency. Compete across categories from architecture to energy output.</p>
+        <div class="event-meta">
+          <span class="event-tag">Sustainability</span>
+          <span class="event-tag">Team</span>
+          <span class="event-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="event-card">
+        <div class="event-card-glow"></div>
+        <div class="event-number">05 // BIOSCIENCE</div>
+        <div class="event-name">iGEM Synbio</div>
+        <p class="event-desc">Synthetic biology competition where teams engineer biological systems to solve healthcare, agriculture, and environmental challenges.</p>
+        <div class="event-meta">
+          <span class="event-tag">Biology</span>
+          <span class="event-tag">Research</span>
+          <span class="event-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="event-card">
+        <div class="event-card-glow"></div>
+        <div class="event-number">06 // DESIGN</div>
+        <div class="event-name">Innovation Challenge</div>
+        <p class="event-desc">From concept to prototype in 48 hours. Multidisciplinary teams tackle UN Sustainable Development Goals with engineering solutions.</p>
+        <div class="event-meta">
+          <span class="event-tag">Hackathon</span>
+          <span class="event-tag">Interdisciplinary</span>
+          <span class="event-arrow">→</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── HIGHLIGHTS ──────────────────────────────────── -->
+  <section id="highlights">
+    <span class="section-tag">Why Techfest</span>
+    <h2 class="section-title">The <span class="glow">Experience</span></h2>
+    <div class="highlights-grid">
+      <div class="highlight-main">
+        <div class="highlight-main-num">28</div>
+        <span class="section-tag">Legacy</span>
+        <h3 style="font-family:'Orbitron',monospace; font-size:1.4rem; font-weight:700; color:var(--text); margin-top:0.5rem; letter-spacing:0.02em;">
+          28 Years of Pioneering<br />Science &amp; Innovation
+        </h3>
+        <p style="margin-top:1rem; font-size:0.92rem; line-height:1.75; color:var(--muted); max-width:480px;">
+          From humble beginnings to a globally recognized festival that has hosted Nobel laureates, astronauts, and industry leaders — Techfest defines what student-driven innovation looks like at its finest.
+        </p>
+        <div style="margin-top:2rem;">
+          <a href="#about" class="btn-primary">Read Our Story</a>
+        </div>
+      </div>
+      <div class="highlight-side">
+        <div class="highlight-card">
+          <div class="highlight-icon">🏆</div>
+          <div class="highlight-card-title">₹1 Crore+ Prize Pool</div>
+          <p class="highlight-card-text">Largest prize pool among student-run festivals in Asia.</p>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-icon">🌐</div>
+          <div class="highlight-card-title">Global Participation</div>
+          <p class="highlight-card-text">Teams from 190+ countries compete on a single campus.</p>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-icon">🚀</div>
+          <div class="highlight-card-title">Exclusive Lectures</div>
+          <p class="highlight-card-text">World-class scientists, CEOs, and astronauts take the stage.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SPONSORS ─────────────────────────────────────── -->
+  <section id="sponsors" class="sponsors-section" style="background:var(--surface); border-top:1px solid var(--border);">
+    <span class="section-tag" style="justify-content:center;">Our Partners</span>
+    <h2 class="section-title">Trusted by <span class="glow">Industry Leaders</span></h2>
+    <div class="sponsors-grid">
+      <div class="sponsor-item">
+        <div>
+          <div class="sponsor-name">Samsung</div>
+          <div class="sponsor-tier">Title Sponsor</div>
+        </div>
+      </div>
+      <div class="sponsor-item">
+        <div>
+          <div class="sponsor-name">ISRO</div>
+          <div class="sponsor-tier">Knowledge Partner</div>
+        </div>
+      </div>
+      <div class="sponsor-item">
+        <div>
+          <div class="sponsor-name">Microsoft</div>
+          <div class="sponsor-tier">Tech Partner</div>
+        </div>
+      </div>
+      <div class="sponsor-item">
+        <div>
+          <div class="sponsor-name">Tata Motors</div>
+          <div class="sponsor-tier">Mobility Partner</div>
+        </div>
+      </div>
+      <div class="sponsor-item">
+        <div>
+          <div class="sponsor-name">Reliance</div>
+          <div class="sponsor-tier">Founding Partner</div>
+        </div>
+      </div>
+      <div class="sponsor-item">
+        <div>
+          <div class="sponsor-name">Intel</div>
+          <div class="sponsor-tier">Tech Partner</div>
+        </div>
+      </div>
+      <div class="sponsor-item">
+        <div>
+          <div class="sponsor-name">DRDO</div>
+          <div class="sponsor-tier">Defence Partner</div>
+        </div>
+      </div>
+      <div class="sponsor-item">
+        <div>
+          <div class="sponsor-name">Google</div>
+          <div class="sponsor-tier">Innovation Partner</div>
+        </div>
+      </div>
+      <div class="sponsor-item">
+        <div>
+          <div class="sponsor-name">Mahindra</div>
+          <div class="sponsor-tier">Industry Partner</div>
+        </div>
+      </div>
+      <div class="sponsor-item">
+        <div>
+          <div class="sponsor-name">ONGC</div>
+          <div class="sponsor-tier">Energy Partner</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ───────────────────────────────────────── -->
+  <footer id="contact">
+    <div class="footer-city"></div>
+    <div class="footer-content">
+      <div class="footer-brand">
+        <img src="TFlogo.cb1159ca71db5e1069fc.png" alt="Techfest" />
+        <p>Asia's Largest Science &amp; Technology Festival, hosted by IIT Bombay every December since 1998.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Navigate</div>
+        <ul class="footer-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#events">Events</a></li>
+          <li><a href="#highlights">Highlights</a></li>
+          <li><a href="#sponsors">Sponsors</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Participate</div>
+        <ul class="footer-links">
+          <li><a href="#">Register</a></li>
+          <li><a href="#">Submit Project</a></li>
+          <li><a href="#">Volunteer</a></li>
+          <li><a href="#">Sponsorship</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Connect</div>
+        <ul class="footer-links">
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Twitter/X</a></li>
+          <li><a href="#">LinkedIn</a></li>
+          <li><a href="#">contact@techfest.org</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2024 Techfest, IIT Bombay. All rights reserved.</span>
+      <span class="footer-copy">Made with <span>♥</span> at IIT Bombay</span>
+    </div>
+  </footer>
+
+</body>
+</html>
